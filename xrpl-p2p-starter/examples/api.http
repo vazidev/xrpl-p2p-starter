@@ -1,0 +1,30 @@
+### Get Quote
+POST http://localhost:8000/v1/quotes
+Content-Type: application/json
+
+{
+  "from_ccy": "KES",
+  "to_ccy": "PHP",
+  "amount": 10000,
+  "payout_type": "mobile_money"
+}
+
+### Create Transfer
+POST http://localhost:8000/v1/transfers
+Content-Type: application/json
+
+{
+  "idempotency_key": "abc123",
+  "quote_id": "REPLACE_WITH_QUOTE_ID",
+  "user_id": "user-001",
+  "payout_details": {
+    "from_ccy": "KES",
+    "to_ccy": "PHP",
+    "amount": 10000,
+    "payout_type": "mobile_money",
+    "recipient": {"phone": "+63XXXXXXX", "name": "Juan D"}
+  }
+}
+
+### Get Transfer Status
+GET http://localhost:8000/v1/transfers/REPLACE_WITH_TRANSFER_ID
